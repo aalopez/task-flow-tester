@@ -57,6 +57,7 @@ import org.emg.adf.tftester.rt.model.xml.jaxb.ObjectFactory;
 import org.emg.adf.tftester.rt.model.xml.jaxb.ParamValueObject;
 import org.emg.adf.tftester.rt.model.xml.jaxb.TaskFlowTester;
 import org.emg.adf.tftester.rt.model.xml.jaxb.TestCase;
+import org.emg.adf.tftester.rt.util.GreenSuiteUtil;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -419,7 +420,9 @@ import org.xml.sax.helpers.DefaultHandler;
      // In addTaskFlow we check whether the atask flow is already added
      for (String taskFlowId : taskFlows)
      {
-       addTaskFlow(taskFlowId, null, false, false);
+       TaskFlow tf = addTaskFlow(taskFlowId, null, false, false);
+       //Adds default test cases for the greensuite taskflow tester
+       GreenSuiteUtil.addDefaultTestCasesGreenSuite(tf);
      }
      Collections.sort(getTestTaskFlows());
    }
